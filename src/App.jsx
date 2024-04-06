@@ -1,9 +1,26 @@
-import './App.module.css'
+import { NavLink, Route, Routes } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const MoviesPage = lazy(() => import('./pages/MoviesPage'))
+
+import Loader from './components/Loader/Loader'
 
 function App() {
   return (
     <div>
-      <h1>React template for home work</h1>
+      <header>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/movies">Movies</NavLink>
+      </header>
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/movies" element={<MoviesPage />} />
+          </Routes>
+        </Suspense>
+      </main>
     </div>
   )
 }
