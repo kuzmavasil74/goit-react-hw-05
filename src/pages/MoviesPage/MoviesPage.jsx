@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { searchMovies } from '../../services/api'
-import Loader from '../components/Loader/Loader'
-import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
+import { searchMovies } from '../../../services/api'
+import Loader from '../../components/Loader/Loader'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
+import MovieList from '../../components/MovieList/MovieList'
 
+import css from './MoviesPage.module.css'
 const MoviesPage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -24,19 +26,22 @@ const MoviesPage = () => {
   return (
     <div>
       <h1></h1>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className={css.searchContainer}>
+        <input
+          className={css.inputSearch}
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button className={css.buttonSearch} onClick={handleSearch}>
+          Search
+        </button>
+      </div>
       {isLoading && <Loader />}
-      {error && <ErrorMessage />}
+      {error && <ErrorMessage error={error} />}
       <ul>
         {searchResults.map((movie) => (
-          <li key={movie.id}>
-            <h2>{movie.title || movie.name || movie.original_name}</h2>
-          </li>
+          <MovieList key={movie.id} movie={movie} />
         ))}
       </ul>
     </div>
