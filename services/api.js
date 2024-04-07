@@ -44,7 +44,7 @@ export const moviesDetails = async (movieId) => {
   }
   try {
     const response = await axios.get(url, options)
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
   } catch (error) {
     console.error('Error fetching movies:', error)
@@ -52,8 +52,8 @@ export const moviesDetails = async (movieId) => {
   }
 }
 
-export const moviesCredits = async (credits) => {
-  const url = `https://api.themoviedb.org/3/movie/movie_id/${credits}?language=en-US`
+export const moviesCredits = async (movieId) => {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`
   const options = {
     headers: {
       Authorization:
@@ -62,15 +62,16 @@ export const moviesCredits = async (credits) => {
   }
   try {
     const response = await axios.get(url, options)
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
   } catch (error) {
     console.error('Error fetching movies:', error)
     throw error
   }
 }
-export const moviesReviews = async (reviews) => {
-  const url = `https://api.themoviedb.org/3/movie/movie_id/${reviews}?language=en-US&page=1 `
+
+export const moviesReviews = async (movieId) => {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=en-US&page=1 `
   const options = {
     headers: {
       Authorization:

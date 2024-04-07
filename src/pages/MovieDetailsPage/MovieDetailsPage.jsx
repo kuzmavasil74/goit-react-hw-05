@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import { moviesDetails } from '../../../services/api'
+import { moviesCredits, moviesDetails } from '../../../services/api'
 
 import css from './MovieDetailsPage.module.css'
+import MovieCast from '../../components/MovieCast/MovieCast'
+
 const MovieDetailsPage = () => {
   const { movieId } = useParams()
   const [movieDetails, setMovieDetails] = useState(null)
+  const [cast, setCast] = useState(null)
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const details = await moviesDetails(movieId)
-        console.log(details)
         setMovieDetails(details)
       } catch (error) {
         console.error('Error fetching movie details:', error)
@@ -19,6 +21,16 @@ const MovieDetailsPage = () => {
     }
     fetchMovieDetails()
   }, [movieId])
+
+  const handleClick = async () => {
+    try {
+      const castData = await moviesCredits(movieId)
+      setCast(castData.cast)
+      console.log('Cast data:', castData.cast)
+    } catch (error) {
+      console.error('Error fetching movie credits:', error)
+    }
+  }
 
   return (
     <div>
@@ -54,11 +66,10 @@ const MovieDetailsPage = () => {
           </div>
           <div>Additional information</div>
           <ul>
-            <li>
-              <NavLink
-                className={css.navLink}
-                to={`/movies/${movieId}/cast`}
-              ></NavLink>
+            <li onClick={handleClick}>
+              <NavLink className={css.navLink} to={`/movies/${movieId}/cast`}>
+                Cast
+              </NavLink>
             </li>
             <li>
               <NavLink
@@ -69,6 +80,21 @@ const MovieDetailsPage = () => {
               </NavLink>
             </li>
           </ul>
+          {cast &&
+            cast.map(
+              ({ id, name, profile_path }) => (
+                console.log(cast),
+                (
+                  <li key={id}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                      alt={name}
+                    />
+                    <p>{name}</p>
+                  </li>
+                )
+              )
+            )}
         </div>
       )}
     </div>
