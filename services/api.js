@@ -34,3 +34,55 @@ export const trendingMovies = async () => {
     throw error
   }
 }
+export const moviesDetails = async (movieId) => {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`
+  const options = {
+    headers: {
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MTFjZjRkZDNkODI1NWJmZTRkYWM4NWE3ODAzY2QzOCIsInN1YiI6IjY2MTE4MDRhOGMwYTQ4MDE3ZTA0NjlkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2mNRHbFJmr7K7ZO7fcdj0yRFs4U5hyxjdV8naDrlths',
+    },
+  }
+  try {
+    const response = await axios.get(url, options)
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error('Error fetching movies:', error)
+    throw error
+  }
+}
+
+export const moviesCredits = async (credits) => {
+  const url = `https://api.themoviedb.org/3/movie/movie_id/${credits}?language=en-US`
+  const options = {
+    headers: {
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MTFjZjRkZDNkODI1NWJmZTRkYWM4NWE3ODAzY2QzOCIsInN1YiI6IjY2MTE4MDRhOGMwYTQ4MDE3ZTA0NjlkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2mNRHbFJmr7K7ZO7fcdj0yRFs4U5hyxjdV8naDrlths',
+    },
+  }
+  try {
+    const response = await axios.get(url, options)
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error('Error fetching movies:', error)
+    throw error
+  }
+}
+export const moviesReviews = async (reviews) => {
+  const url = `https://api.themoviedb.org/3/movie/movie_id/${reviews}?language=en-US&page=1 `
+  const options = {
+    headers: {
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MTFjZjRkZDNkODI1NWJmZTRkYWM4NWE3ODAzY2QzOCIsInN1YiI6IjY2MTE4MDRhOGMwYTQ4MDE3ZTA0NjlkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2mNRHbFJmr7K7ZO7fcdj0yRFs4U5hyxjdV8naDrlths',
+    },
+  }
+  try {
+    const response = await axios.get(url, options)
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error('Error fetching movies:', error)
+    throw error
+  }
+}
