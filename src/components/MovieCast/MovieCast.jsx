@@ -1,11 +1,11 @@
-const MovieCast = ({ cast, movieId }) => {
+const MovieCast = ({ cast }) => {
   // console.log('Received cast:', cast)
-  // if (!cast) {
-  //   return null
-  // }
+  if (Array.isArray(cast) && cast.length === 0) {
+    return null
+  }
   return (
     <ul>
-      {/* {cast &&
+      {cast &&
         cast.map(({ id, name, profile_path }) => (
           <li key={id}>
             <img
@@ -14,7 +14,7 @@ const MovieCast = ({ cast, movieId }) => {
             />
             <p>{name}</p>
           </li>
-        ))} */}
+        ))}
     </ul>
   )
 }

@@ -10,7 +10,7 @@ export const searchMovies = async (searchQuery) => {
   try {
     const response = await axios.get(url, options)
     console.log(response.data.results)
-    return response.data.results
+    // return response.data.results
   } catch (error) {
     console.error('Error fetching movies:', error)
     throw error
@@ -27,7 +27,7 @@ export const trendingMovies = async () => {
   }
   try {
     const response = await axios.get(url, options)
-    console.log(response.data.results)
+    // console.log(response.data.results)
     return response.data.results
   } catch (error) {
     console.error('Error fetching movies:', error)

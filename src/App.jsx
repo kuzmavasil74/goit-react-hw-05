@@ -9,7 +9,6 @@ import css from './App.module.css'
 import clsx from 'clsx'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage'
-import MovieCast from './components/MovieCast/MovieCast'
 
 function App() {
   const [isLoading, setIsLoading] = useState(false)
@@ -54,9 +53,7 @@ function App() {
                 />
               }
             />
-            <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-            <Route path="/movies/:movieId/cast" element={<MovieCast />} />
-            <Route path="/movies/:movieId/reviews" element={<MovieCast />} />
+            <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

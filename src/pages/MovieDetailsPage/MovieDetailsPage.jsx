@@ -1,14 +1,21 @@
-import { useEffect, useState } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
-import { moviesCredits, moviesDetails } from '../../../services/api'
+import { Suspense, useEffect, useState } from 'react'
+import { NavLink, Route, Routes, useParams } from 'react-router-dom'
+import {
+  moviesCredits,
+  moviesDetails,
+  moviesReviews,
+} from '../../../services/api'
 
 import css from './MovieDetailsPage.module.css'
 import MovieCast from '../../components/MovieCast/MovieCast'
+import Loader from '../../components/Loader/Loader'
+import MovieReviews from '../../components/MovieReviews/MovieReviews'
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams()
   const [movieDetails, setMovieDetails] = useState(null)
   const [cast, setCast] = useState(null)
+  const [reviews, setReviews] = useState(null)
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -26,9 +33,17 @@ const MovieDetailsPage = () => {
     try {
       const castData = await moviesCredits(movieId)
       setCast(castData.cast)
-      console.log('Cast data:', castData.cast)
+      // console.log('Cast data:', castData.cast)
     } catch (error) {
       console.error('Error fetching movie credits:', error)
+    }
+  }
+  const handleClickReview = async () => {
+    try {
+      const reviewsData = await moviesReviews(movieId)
+      setReviews(reviewsData.results)
+    } catch (error) {
+      console.error('Error fetching movie reviews:', error)
     }
   }
 
@@ -66,35 +81,30 @@ const MovieDetailsPage = () => {
           </div>
           <div>Additional information</div>
           <ul>
-            <li onClick={handleClick}>
-              <NavLink className={css.navLink} to={`/movies/${movieId}/cast`}>
+            <li>
+              <NavLink to={`cast`} onClick={handleClick}>
                 Cast
               </NavLink>
+              <Suspense fallback={<Loader />}>
+                <Routes>
+                  <Route path={`cast`} element={<MovieCast cast={cast} />} />
+                </Routes>
+              </Suspense>
             </li>
             <li>
-              <NavLink
-                className={css.navLink}
-                to={`/movies/${movieId}/reviews`}
-              >
+              <NavLink to={`reviews`} onClick={handleClickReview}>
                 Reviews
               </NavLink>
+              <Suspense fallback={<Loader />}>
+                <Routes>
+                  <Route
+                    path={`reviews`}
+                    element={<MovieReviews reviews={reviews} />}
+                  />
+                </Routes>
+              </Suspense>
             </li>
           </ul>
-          {cast &&
-            cast.map(
-              ({ id, name, profile_path }) => (
-                console.log(cast),
-                (
-                  <li key={id}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-                      alt={name}
-                    />
-                    <p>{name}</p>
-                  </li>
-                )
-              )
-            )}
         </div>
       )}
     </div>
