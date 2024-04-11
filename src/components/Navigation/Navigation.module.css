@@ -1,0 +1,21 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+a.active {
+  border: 1px solid red;
+  color: red;
+  text-decoration: none;
+}
+.navLink {
+  display: flex;
+  padding: 10px 10px;
+  width: 100px;
+  border: 1px solid blue;
+  color: blue;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}

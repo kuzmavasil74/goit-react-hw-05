@@ -1,0 +1,89 @@
+.additionalInfo {
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+}
+.movieDetailsList {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.goBack {
+  width: 125px;
+  display: block;
+  color: brown;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.goBack:hover {
+  color: blue;
+}
+.goBack:active {
+  color: red;
+}
+.link {
+  display: block;
+  text-decoration: none;
+  color: brown;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.link:hover {
+  color: blue;
+}
+.link:active {
+  color: red;
+}
+.movieDetailsTitle {
+  font-weight: bold;
+  font-size: xx-large;
+  padding: 10px;
+}
+.movieDetailsScored {
+  font-weight: normal;
+  font-size: medium;
+  font-style: italic;
+  padding: 10px;
+  text-align: justify;
+  color: blueviolet;
+}
+.movieDetailsOverviewTitle {
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+}
+.movieDetailsOverviewDesc {
+  font-weight: normal;
+  font-size: medium;
+  font-style: italic;
+  padding: 10px;
+  text-align: justify;
+}
+.movieDetailsGenres {
+  font-weight: 600;
+  font-size: medium;
+  font-style: italic;
+  padding: 10px;
+  text-align: justify;
+}
+.movieDetailsGenresList {
+  font-weight: normal;
+  font-size: medium;
+  font-style: italic;
+  padding-left: 10px;
+  text-align: justify;
+}
+.movieDetailsGenresItem {
+  padding: 0 0 10px 10px;
+  color: cadetblue;
+}
